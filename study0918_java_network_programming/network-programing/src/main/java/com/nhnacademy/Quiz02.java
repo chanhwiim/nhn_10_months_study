@@ -9,8 +9,8 @@ public class Quiz02 {
         int minPortNum = 0;
         int maxPortNum = 65535;
 
-        // minPortNum = Integer.parseInt(args[0]);
-        // maxPortNum = Integer.parseInt(args[1]);
+        minPortNum = Integer.parseInt(args[0]);
+        maxPortNum = Integer.parseInt(args[1]);
 
         for (int port = minPortNum; port < maxPortNum; port++) {
             try (Socket socket = new Socket("localhost", port)) {
