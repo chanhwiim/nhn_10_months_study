@@ -5,30 +5,24 @@ import java.util.List;
 
 import com.example.Coupon.Coupon;
 
-public class Customer implements Runnable {
-    Thread thread;
+public class CustomerMacro {
     private final long id;
     private final String name;
     private int money;
     private final List<Coupon> couponList = new ArrayList<>();
 
-    private Customer(long id, String name, int money) {
-        thread = new Thread(this);
+    private CustomerMacro(long id, String name, int money) {
         this.id = id;
         this.name = name;
         this.money = money;
     }
 
-    public static Customer of(long id, String name) {
-        return new Customer(id, name, 1000000);
+    public static CustomerMacro of(long id, String name) {
+        return new CustomerMacro(id, name, 1000000);
     }
 
-    public void addCoupon(Coupon coupon) {
+    public void setCoupon(Coupon coupon) {
         couponList.add(coupon);
-    }
-
-    public List<Coupon> getCouponList() {
-        return couponList;
     }
 
     public long getId() {
@@ -43,22 +37,9 @@ public class Customer implements Runnable {
         return money;
     }
 
-    public void start() {
-        thread.start();
-    }
-
-    public void stop() {
-        thread.interrupt();
-    }
-
-    @Override
-    public void run() {
-
-    }
-
     @Override
     public String toString() {
-        return "Customer [id=" + id + ", name=" + name + ", money=" + money + ", couponList="
+        return "CustomerMacro [id=" + id + ", name=" + name + ", money=" + money + ", couponList="
                 + couponList + "]";
     }
 }

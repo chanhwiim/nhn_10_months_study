@@ -15,7 +15,7 @@
     </appender>
 
     <!-- debug 레벨 설정 -->
-    <root level="debug">
+    <root level="trace">
         <appender-ref ref="FILE"/>
         <appender-ref ref="STDOUT"/>
     </root>
