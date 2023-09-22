@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Quiz07",
+            "request": "launch",
+            "mainClass": "com.nhnacademy.Quiz07",
+            "projectName": "newwork-programing"
+        },
+        {
+            "type": "java",
+            "name": "Quiz05",
+            "request": "launch",
+            "mainClass": "com.nhnacademy.Quiz05",
+            "projectName": "newwork-programing"
+        },
+        {
+            "type": "java",
             "name": "Ex02",
             "request": "launch",
             "mainClass": "com.nhnacademy.Ex02",

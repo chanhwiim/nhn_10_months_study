@@ -12,7 +12,7 @@ public abstract class Request {
         this.requestId = ID_GENERATOR.incrementAndGet();
     }
 
-    protected abstract void execute();
+    public abstract void execute();
 
     public String toString() {
         return "requestId" + requestId;

@@ -11,13 +11,15 @@ import lombok.extern.slf4j.Slf4j;
 public class CouponRequest extends Request {
 
     private final Customer customer;
+    private final ShoppingChannel shoppingChannel;
 
-    public CouponRequest(Customer customer) {
+    public CouponRequest(Customer customer, ShoppingChannel shoppingChannel) {
         this.customer = customer;
+        this.shoppingChannel = shoppingChannel;
     }
 
     @Override
-    protected void execute() {
+    public void execute() {
         // 쿠폰 발급 로직.
         if (CouponGenerator.getCouponGenerator().hasNext()) {
             customer.addCoupon(CouponGenerator.getCouponGenerator().next());
@@ -32,7 +34,7 @@ public class CouponRequest extends Request {
         } catch (InterruptedException e) {
             log.error("sleep", e);
         }
-
+        shoppingChannel.addRequest(new ShoppingRequest(customer));
     }
 
 }

@@ -6,6 +6,8 @@ import com.example.Coupon.Coupon;
 import com.example.Employee.Emplyee;
 import com.example.thread.Channel;
 import com.example.thread.Client;
+import com.example.thread.ShoppingChannel;
+import com.example.thread.ShoppingWorker;
 import com.example.thread.WorkerPool;
 import com.example.threadLocal.SharedUserContext;
 
@@ -38,13 +40,20 @@ public class Main {
         // log.info("customer2 : {}", customer2);
         // }
 
+        ShoppingChannel shoppingChannel = new ShoppingChannel();
+        ExecutorService executorsService = Executors.newFixedThreadPool(10);
+        for (int i = 0; i < 10; i++) {
+            executorsService.execute(new ShoppingWorker(shoppingChannel));
+        }
+
         Channel channel = new Channel(20);
         WorkerPool workerPool = new WorkerPool(3, channel);
         workerPool.start();
+        log.info("finished");
 
-        new Thread(new Client(channel)).start();
-        // new Thread(new Client(channel)).start();
-        // new Thread(new Client(channel)).start();
+        new Thread(new Client(channel, shoppingChannel)).start();
+        new Thread(new Client(channel, shoppingChannel)).start();
+        new Thread(new Client(channel, shoppingChannel)).start();
 
         // SharedUserContext user1 = new SharedUserContext(1);
         // SharedUserContext user2 = new SharedUserContext(2);
